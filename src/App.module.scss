@@ -1,0 +1,283 @@
+.chatBot {
+  * {
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+  *::-webkit-scrollbar,
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  .display {
+    color: white;
+    padding: 8px 0;
+    flex: 1;
+  }
+  .button {
+    background-color: rgb(0, 113, 178);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 1px 6px 0 rgba(36, 31, 4, 0.28);
+    outline: none;
+  }
+
+  .chatBody {
+    border-radius: 8px;
+    box-shadow: 0 1px 6px 0 rgba(36, 31, 4, 0.28);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .icon {
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, rgb(0, 113, 178) 0%, rgb(0, 48, 76) 100%);
+      height: 64px;
+      width: 100%;
+      padding: 10px;
+      position: relative;
+      display: flex;
+      .botLogo {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0050c8;
+        font-weight: bolder;
+        color: white;
+        border-radius: 50%;
+        border: 1px solid white;
+        margin-right: 16px;
+      }
+      .close {
+        position: absolute;
+        right: 0;
+        width: 32px;
+        top: 0;
+        height: 32px;
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        background-color: transparent;
+        color: white;
+        font-size: 20px;
+        padding: 0;
+        border-color: transparent;
+      }
+    }
+
+    .footer {
+      border-top: 1px solid lightgray;
+      min-height: 44px;
+      width: 100%;
+      align-items: center;
+      display: flex;
+      background-color: #ebebeb;
+      padding: 4px 8px;
+    }
+
+    .preview {
+      height: 100px;
+      background-color: #ebebeb;
+      display: flex;
+      justify-content: center;
+      padding: 8px;
+      img, embed, video {
+        width: 100px;
+      }
+      .attachment {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: #e1f4fa;
+        padding: 4px;
+        img {
+          height: 80px;
+          width: 64px;
+        }
+        .fileName {
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+      }
+    }
+
+    .keepAlive {
+      background-color: #e1f4fa;
+      color: #0050c8;
+      padding: 1px 8px;
+      cursor: pointer;
+    }
+
+    .input {
+      flex: 1;
+      outline: none;
+      border: none;
+      height: 32px;
+      box-sizing: border-box;
+      border-radius: 16px;
+      padding: 4px 16px;
+      resize: none;
+      line-height: 18px;
+    }
+
+    .uploader {
+      border: 1px dashed rgb(0, 113, 178);
+      height: 100%;
+      width: 100%;
+      color: #0050c8;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .body {
+      background-color: #e5ddd5;
+      padding: 8px;
+      flex: 1;
+      overflow: scroll;
+      position: relative;
+
+      .options {
+        box-sizing: border-box;
+        margin-top: 8px;
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid lightgray;
+        background-color: #ebebeb;
+
+        .option {
+          width: 100%;
+          height: 24px;
+          outline: none;
+          border-radius: 12px;
+          margin-bottom: 8px;
+          color: rgb(0, 113, 178);
+          cursor: pointer;
+          border: 1px solid rgb(0, 113, 178);
+          background-color: transparent;
+          &.selected {
+            color: white;
+            background-color: rgb(0, 113, 178);
+          }
+        }
+      }
+
+      .finish {
+        height: 24px;
+        background-color: rgb(0, 113, 178);
+        color: #fff;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+      .today {
+        padding: 2px 4px;
+        background-color: #e1f4fa;
+        margin-bottom: 8px;
+        border-radius: 4px;
+      }
+      .text {
+        color: #000;
+        clear: both;
+        line-height: 16px;
+        font-size: 12px;
+        padding: 4px;
+        position: relative;
+        display: inline-block;
+        max-width: 70%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        &:after {
+          position: absolute;
+          content: '';
+          width: 0;
+          height: 0;
+          border-style: solid;
+        }
+        .time {
+          color: rgba(0, 0, 0, 0.45);
+          float: right;
+          padding: 0 0 0 7px;
+          position: relative;
+          bottom: -4px;
+          font-size: 8px;
+          display: inline-block;
+        }
+        img, embed, video {
+          width: 100%;
+        }
+        .attachment {
+          width: 100%;
+          background-color: #e1f4fa;
+          padding: 4px;
+          border-radius: 4px;
+          .image {
+            background-color: #ebebeb;
+          }
+          img {
+            height: 80px;
+            width: 64px;
+          }
+          .fileName {
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-radius: 4px;
+            border: 4px solid #ebebeb;
+            padding: 4px;
+            font-family: "Andale Mono", sans-serif;
+          }
+        }
+      }
+      .botText {
+        margin: 8px 8px 0;
+        background: #fff;
+        border-radius: 0 5px 5px 5px;
+        &:after {
+          border-width: 0 10px 10px 0;
+          border-color: transparent #fff transparent transparent;
+          top: 0;
+          left: -10px;
+        }
+      }
+
+      .inputText {
+        margin: 8px 8px 0;
+        background: #e1f4fa;
+        border-radius: 5px 0 5px 5px;
+        word-wrap: break-word;
+        float: right;
+        &:after {
+          border-width: 0 0 10px 10px;
+          border-color: transparent transparent transparent #e1f4fa;
+          top: 0;
+          right: -10px;
+        }
+      }
+    }
+  }
+}
+
+.awesomeDev {
+  padding: 4px;
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid lightgray;
+  color: #0050c8;
+  cursor: pointer;
+}
+.demo {
+
+}
