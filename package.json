@@ -1,7 +1,8 @@
 {
-  "name": "chat-bot",
-  "version": "0.1.0",
-  "private": true,
+  "name": "chat-form",
+  "version": "0.0.11",
+  "private": false,
+  "main": "lib/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

@@ -10,7 +10,7 @@
 
 # production
 /build
-
+lib
 .idea
 # misc
 .DS_Store
