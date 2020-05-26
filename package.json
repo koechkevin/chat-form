@@ -1,6 +1,6 @@
 {
   "name": "chat-form",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "private": false,
   "main": "dist/js/export.js",
   "module": "dist/esm/export.js",
@@ -67,5 +67,15 @@
     "fs-extra": "^9.0.0",
     "postcss-scss": "^2.1.1",
     "ts-node": "^8.10.1"
+  },
+  "homepage": "https://github.com/koechkevin/chat-form#readme",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/koechkevin/chat-form"
+  },
+  "author": {
+    "name": "Kevin Koech",
+    "email": "koechkevin92@gmail.com",
+    "url": "https://github.com/koechkevin"
   }
 }
