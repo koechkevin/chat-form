@@ -1,12 +1,28 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "jsx": "react",
-    "outDir": "lib",
-    "module": "commonjs",
-    "strict": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "outDir": "dist/js",
+    "jsx": "react",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "target": "es5"
+  },
+  "include": [
+    "./src/*",
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./src/**/**.test.tsx",
+    "./src/**/**.test.ts",
+    "./src/**/examples/**"
+  ]
 }

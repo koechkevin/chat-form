@@ -85,6 +85,7 @@ const App: FC<{}> = () => {
         questions={mockQuestions}
         className={styles.demo}
       />
+      New version released
     </div>
   );
 };
