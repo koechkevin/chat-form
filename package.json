@@ -1,6 +1,6 @@
 {
   "name": "chat-form",
-  "version": "0.0.49",
+  "version": "0.0.50",
   "private": false,
   "main": "dist/js/export.js",
   "module": "dist/esm/export.js",
@@ -73,7 +73,7 @@
     "postcss-scss": "^2.1.1",
     "ts-node": "^8.10.1"
   },
-  "homepage": "https://github.com/koechkevin/chat-form#readme",
+  "homepage": "https://react-chat-form.firebaseapp.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/koechkevin/chat-form"
