@@ -1,6 +1,6 @@
 {
   "name": "chat-form",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "private": false,
   "main": "dist/js/export.js",
   "module": "dist/esm/export.js",
@@ -37,11 +37,15 @@
     "build:babel:esm": "BABEL_ENV=esm babel --source-maps --extensions \".js,.ts,.tsx\" src --out-dir dist/esm",
     "build:babel:umd": "BABEL_ENV=umd babel --source-maps --extensions \".js\" dist/esm --out-dir dist/umd --plugins=transform-es2015-modules-umd",
     "build:types": "tsc -p tsconfig.lib.json",
-    "update": "yarn run build:lib && ts-node --project tsconfig.lib.json publish.ts",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "ts-node --project tsconfig.lib.json publish.ts && git add package.json"
+    }
   },
   "browserslist": {
     "production": [
@@ -65,13 +69,14 @@
     "babel-plugin-typescript-to-proptypes": "^1.3.2",
     "concurrently": "^5.2.0",
     "fs-extra": "^9.0.0",
+    "husky": "^4.2.5",
     "postcss-scss": "^2.1.1",
     "ts-node": "^8.10.1"
   },
   "homepage": "https://github.com/koechkevin/chat-form#readme",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/koechkevin/chat-form"
+    "type": "git",
+    "url": "https://github.com/koechkevin/chat-form"
   },
   "author": {
     "name": "Kevin Koech",
