@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import ChatBot, { Question } from './ChatBot';
 import styles from './App.module.scss';
 
@@ -69,23 +69,27 @@ const mockQuestions: Question[] = [
   },
 ];
 const App: FC<{}> = () => {
+  const [questions, setQuestions] = useState(mockQuestions);
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100vw',
-        display: 'flex',
-        justifyContent: 'center',
-        padding: 32,
-        boxSizing: 'border-box',
-      }}
-    >
-      <ChatBot
-        lastMessage={({ name = '' }) => `Thank you ${name}. I will get back to you through the information you shared.`}
-        questions={mockQuestions}
-        className={styles.demo}
-      />
-      New version released
+    <div className={styles.app}>
+      <div className={styles.description}>
+        <span>This is a demo for</span>
+        <a href="https://www.npmjs.com/package/chat-form">chat-form</a>
+      </div>
+      <div className={styles.description}>
+        <span>View source code in</span>
+        <a href="https://github.com/koechkevin/chat-form/blob/master/src/App.tsx">github</a>
+      </div>
+      <div>
+        <ChatBot
+          lastMessage={({ name = '' }) =>
+            `Thank you ${name}. I will get back to you through the information you shared.`
+          }
+          onAnswer={setQuestions}
+          questions={questions}
+          className={styles.demo}
+        />
+      </div>
     </div>
   );
 };

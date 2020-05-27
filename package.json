@@ -1,6 +1,6 @@
 {
   "name": "chat-form",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "private": false,
   "main": "dist/js/export.js",
   "module": "dist/esm/export.js",
@@ -13,7 +13,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "babel-plugin-react-css-modules": "^5.2.6",
-    "moment": "^2.26.0",
+    "dayjs": "^1.8.27",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -31,6 +31,7 @@
     "build:babel:esm": "BABEL_ENV=esm babel --source-maps --extensions \".js,.ts,.tsx\" src --out-dir dist/esm",
     "build:babel:umd": "BABEL_ENV=umd babel --source-maps --extensions \".js\" dist/esm --out-dir dist/umd --plugins=transform-es2015-modules-umd",
     "build:types": "tsc -p tsconfig.lib.json",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -62,12 +63,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
     "@types/fs-extra": "^9.0.1",
     "@types/glob": "^7.1.1",
+    "@types/jest": "^24.0.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-plugin-typescript-to-proptypes": "^1.3.2",
     "concurrently": "^5.2.0",
+    "coverage": "^0.4.1",
+    "coveralls": "^3.1.0",
     "fs-extra": "^9.0.0",
     "husky": "^4.2.5",
     "postcss-scss": "^2.1.1",
@@ -82,5 +85,13 @@
     "name": "Kevin Koech",
     "email": "koechkevin92@gmail.com",
     "url": "https://github.com/koechkevin"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/App.tsx",
+      "!src/ChatBot.tsx",
+      "src/Message.tsx",
+      "src/Options.tsx"
+    ]
   }
 }

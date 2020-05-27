@@ -3,15 +3,17 @@ import styles from './App.module.scss';
 import icon from './assets/icon.svg';
 import send from './assets/send.svg';
 import description from './assets/description.svg';
-import moment from 'moment';
 import TextareaAutosize from 'react-textarea-autosize';
 import MessageView, { Message } from './Message';
 import Options from './Options';
+import moment from 'dayjs';
 
 export interface Props {
   className?: string;
   lastMessage: (value: any) => string;
   questions: Question[];
+  onAnswer: (questions: Question[], value?: any) => void;
+  initialMessages?: Message[];
 }
 
 export interface ValidatorObject {
@@ -31,35 +33,35 @@ export interface Question {
 }
 
 const ChatBot: FC<Props> = (props) => {
-  const { className, questions, lastMessage } = props;
+  const { className, questions, lastMessage, onAnswer, initialMessages = [] } = props;
 
   const [idleTime, setIdleTime] = useState<number>(0);
 
-  const [currentQuestions, setCurrentQuestions] = useState(() => questions);
   const [keyValue, setKeyValue] = useState<any>({});
 
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
 
   const updateQuestionsWithAnswers = (answer: any): void => {
-    if (currentQuestion) {
-      setKeyValue((solution: any) => ({ ...solution, [currentQuestion.identifier]: answer }));
+    const val = currentQuestion && { ...keyValue, [currentQuestion.identifier]: answer };
+    if (val) {
+      setKeyValue(val);
     }
-    setCurrentQuestions((val) => {
-      return val.map((each) =>
-        each.identifier === currentQuestion?.identifier
-          ? {
-              ...each,
-              answered: true,
-              answer,
-            }
-          : each,
-      );
-    });
+
+    const value = questions.map((each) =>
+      each.identifier === currentQuestion?.identifier
+        ? {
+            ...each,
+            answered: true,
+            answer,
+          }
+        : each,
+    );
+    onAnswer(value, val);
   };
   const [open, setOpen] = useState<boolean>(true);
   const [value, setValue] = useState<string>('');
 
-  const [chatList, setChatList] = useState<Message[]>([]);
+  const [chatList, setChatList] = useState<Message[]>(initialMessages);
 
   const [typing, setTyping] = useState<boolean>(false);
   const onChange = (e: any) => {
@@ -106,14 +108,8 @@ const ChatBot: FC<Props> = (props) => {
   const onFinish = () => {
     setIdleTime(0);
     const time = moment().format();
-    const message = !selected.length
-      ? `My ${currentQuestion?.identifier} not listed`
-      : `Below is a list of my ${currentQuestion?.identifier} 
-    
-    - ${selected.join(`\n    - `)}
-    
-    Thanks.
-    `;
+    const message = !selected.length ? `My ${currentQuestion?.identifier} not listed` : ` - ${selected.join(`\n - `)}`;
+
     setChatList((val) => [...val, { message, sender: 'user', time }]);
     if (currentQuestion?.validator) {
       const validatorCallBack = currentQuestion?.validator?.validatorCallback;
@@ -140,7 +136,7 @@ const ChatBot: FC<Props> = (props) => {
     setTimeout(() => {
       const time = moment().format();
       const sender = 'bot';
-      const unansweredQuestion = currentQuestions.find((question) => !question.answered);
+      const unansweredQuestion = questions.find((question) => !question.answered);
       setCurrentQuestion(unansweredQuestion);
       if (unansweredQuestion) {
         const message = unansweredQuestion.question(keyValue);
@@ -152,7 +148,7 @@ const ChatBot: FC<Props> = (props) => {
       setTyping(false);
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentQuestions]);
+  }, [questions]);
 
   useEffect(() => {
     const list = document.getElementById('chat-list-body') as HTMLDivElement;
@@ -214,7 +210,9 @@ const ChatBot: FC<Props> = (props) => {
           </button>
         </div>
         <div id="chat-list-body" className={styles.body}>
-          {chatList.map((message: Message, index: number) => (<MessageView key={index} {...message} />))}
+          {chatList.map((message: Message, index: number) => (
+            <MessageView key={index} {...message} />
+          ))}
           {currentQuestion?.options && (
             <Options onFinish={onFinish} options={currentQuestion.options} onSelect={onSelect} selected={selected} />
           )}
@@ -270,6 +268,7 @@ const ChatBot: FC<Props> = (props) => {
                   element && element.click();
                 }}
                 style={{ flex: 1 }}
+                id="file-upload-id"
               >
                 Upload a file
                 <input
@@ -297,6 +296,7 @@ const ChatBot: FC<Props> = (props) => {
       {!open && (
         <div
           tabIndex={0}
+          data-testid="open"
           role="button"
           onClick={() => setOpen(true)}
           aria-label="send message"
