@@ -1,6 +1,6 @@
 {
   "name": "chat-form",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "private": false,
   "main": "dist/js/export.js",
   "module": "dist/esm/export.js",
@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf build && react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "build:lib": "rm -rf dist && yarn build:babel && yarn build:types && ts-node --project tsconfig.lib.json ./copy.ts",
     "build:babel": "concurrently \"yarn build:babel:esm && yarn build:babel:umd\" \"yarn build:babel:cjs\"",
     "build:babel:cjs": "BABEL_ENV=cjs babel --source-maps --extensions \".js,.ts,.tsx\" src --out-dir dist/js --presets=@babel/env",
