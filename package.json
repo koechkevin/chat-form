@@ -1,6 +1,6 @@
 {
   "name": "chat-form",
-  "version": "0.0.55",
+  "version": "0.0.56",
   "private": false,
   "main": "dist/js/export.js",
   "module": "dist/esm/export.js",
