@@ -109,8 +109,9 @@ interface Message {
   fileSrc?: string; // Required if message is of file type
   file?: File;
 }
+
 ```
- #### Props
+ ####  Props
 ```typescript
 interface Props {
   className?: string;
